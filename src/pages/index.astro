@@ -1,8 +1,6 @@
 ---
-import Base from '../layouts/Base.astro';
-import ArticleCard from '../components/ArticleCard.astro';
-import PartnerNote from '../components/PartnerNote.astro';
-import { SITE } from '../consts';
+import V4Base from '../layouts/V4Base.astro';
+import V4Insight from '../components/v4/V4Insight.astro';
 import { getCollection } from 'astro:content';
 
 type CatKey = 'industry-data' | 'market-view' | 'insights';
@@ -15,82 +13,117 @@ const all = (
   }))
 ).flat()
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0, 3);
+  .slice(0, 6);
 ---
-<Base translucentNav={true}>
-  <section class="hero">
-    <div class="container hero__grid">
-      <div>
-        <div class="hero__eyebrow">工業不動產．個人專業平台</div>
-        <h1 class="hero__title">{SITE.author}</h1>
-        <p class="hero__lede">
-          從物件媒合，到企業設廠選址、地主資產活化與土地開發前期評估 — 提供更完整的整合協助。這裡是我個人觀點、分析與經驗的長期發布地。
-        </p>
-        <div class="hero__cta">
-          <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫</a>
-          <a class="btn btn--ghost btn--lg" href="/about/">關於我</a>
+<V4Base>
+  <!-- Full-bleed Hero（米白底，與 about/contact/category 頁色系一致） -->
+  <section class="v2-hero" style="min-height:min(78vh,700px);">
+    <div class="v2-wrap v2-hero__inner" style="padding:140px 0 80px;max-width:920px;">
+      <div class="v2-hero__eyebrow">張現傑 × 睦聚地產</div>
+      <h1 class="v2-hero__title">
+        工業不動產市場觀察・產業資訊分析・<em>前期判讀整理</em>
+      </h1>
+      <p class="v2-hero__lede">
+        以超過 17 年不動產實務經驗為基礎，持續累積中部工業不動產的市場觀察、產業資訊與前期判讀內容。本站不做物件刊登；若有實際仲介或交易承接需求，目前與瑞禾開發合作辦理。
+      </p>
+      <div class="v2-hero__cta">
+        <a class="v2-btn v2-btn--primary" href="/about/">了解平台定位 <span class="v2-btn__arrow">→</span></a>
+        <a class="v2-btn v2-btn--ghost" href="/market-view/">最新市場觀察</a>
+      </div>
+    </div>
+    <div class="v2-hero__scroll">SCROLL ↓</div>
+  </section>
+
+  <!-- Stats strip（米白底下無重疊，正常留間距） -->
+  <section class="v2-section" style="padding-top:56px;">
+    <div class="v2-wrap">
+      <div class="v2-stats">
+        <div class="v2-stat">
+          <div class="v2-stat__num">17<sup>+</sup></div>
+          <div class="v2-stat__label">年不動產實務經驗</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num">3</div>
+          <div class="v2-stat__label">長期聚焦主題方向</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num">{all.length}</div>
+          <div class="v2-stat__label">累積內容</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num" style="font-size:var(--v2-fs-md);line-height:1.4;">台中 彰化 苗栗 南投<br/>各產業園區</div>
+          <div class="v2-stat__label">主要耕耘區域</div>
         </div>
       </div>
-      <div class="hero__portrait" aria-label="個人形象區">
+    </div>
+  </section>
+
+  <!-- FOCUS pillars（V2 版面 × V3 內容） -->
+  <section class="v2-section">
+    <div class="v2-wrap">
+      <div class="v2-section__kicker">FOCUS</div>
+      <h2 class="v2-section__title">本站聚焦內容</h2>
+      <p class="v2-section__lede">
+        三個長期關注的主題方向 — 不是完整仲介服務清單，是這個平台的內容累積重點。寫給在實際接觸工業不動產之前，想先建立基本理解與判讀能力的讀者。
+      </p>
+    </div>
+    <div class="v2-wrap">
+      <div class="v2-pillars">
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">01 / MARKET READING</div>
+          <div class="v2-pillar__title">工業不動產<br/>市場判讀與區域行情整理</div>
+          <div class="v2-pillar__desc">中部工業區、產業聚落與周邊區域的成交脈絡、價格區間、買方結構與供需變化的長期整理。不做預測，讓累積下來的資料自己說話。</div>
+          <a class="v2-pillar__more" href="/industry-data/">看產業資訊</a>
+        </div>
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">02 / SITE &amp; ASSET</div>
+          <div class="v2-pillar__title">設廠選址與<br/>資產運用前期比較</div>
+          <div class="v2-pillar__desc">面向企業主的設廠選址條件比較、廠房條件評估；面向地主的閒置資產活化路徑整理（自建／出售／招租／合作開發的利弊）。</div>
+          <a class="v2-pillar__more" href="/market-view/">看市場觀察</a>
+        </div>
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">03 / RISK CHECK</div>
+          <div class="v2-pillar__title">工業不動產<br/>交易風險與判讀提醒</div>
+          <div class="v2-pillar__desc">建物合法性、使用分區、道路與鄰地條件、既有狀態與交易盲點 — 把「事後才貴」的環節，提前到決策前讓讀者看到。</div>
+          <a class="v2-pillar__more" href="/insights/">看其他資訊</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About（簡潔 2 欄：左標、右文） -->
+  <section class="v2-section v2-section--cream">
+    <div class="v2-wrap">
+      <div style="display:grid;grid-template-columns:1fr 2fr;gap:64px;align-items:start;">
         <div>
-          <div style="font-size:48px;font-weight:700;margin-bottom:8px;">張現傑</div>
-          <div style="font-size:15px;opacity:0.85;">工業不動產<br/>設廠評估整合服務</div>
+          <div class="v2-section__kicker">ABOUT</div>
+          <h2 class="v2-section__title" style="margin-bottom:0;">關於我＆睦聚地產</h2>
+        </div>
+        <div>
+          <p>張現傑，於台中與中部地區深耕工業不動產，超過 17 年實務經驗；專注領域集中在工業地、廠房與產業用地。</p>
+          <p>睦聚地產聚焦不動產產業資訊、行情分析與長期內容累積，與張現傑共同作為本平台主體。本站不刊登物件，專注整理市場觀察、產業資訊、區域行情、風險判讀與前期決策內容。</p>
+          <p style="color:var(--v2-text-soft);">若有實際仲介或交易需求，目前與瑞禾開發合作辦理。</p>
+          <a class="v2-btn v2-btn--ghost" href="/about/" style="margin-top:8px;">完整介紹 <span class="v2-btn__arrow">→</span></a>
         </div>
       </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="section__head">
-        <div class="section__eyebrow">核心服務</div>
-        <h2 class="section__title">目前可協助的三件事</h2>
-        <p class="section__lede">不是通包，是這三類問題我花過最多時間、處理過最多類似情境。</p>
-      </div>
-      <div class="services">
-        <article class="service-card">
-          <h3 class="service-card__title">工業不動產市場判讀</h3>
-          <p class="service-card__desc">實價登錄彙整、特定工業區的交易結構、近期成交訊號的解讀 — 幫你把「行情」從感覺升級為有資料支撐的判斷。</p>
-          <div class="service-card__tags">
-            <span class="service-card__tag">實價登錄</span>
-            <span class="service-card__tag">交易分析</span>
-            <span class="service-card__tag">趨勢判讀</span>
-          </div>
-        </article>
-        <article class="service-card">
-          <h3 class="service-card__title">企業設廠選址 × 資產活化</h3>
-          <p class="service-card__desc">面向企業方的設廠選址比較、地主方的閒置廠房或土地活化評估；從需求條件到候選清單到風險初判，逐步收斂。</p>
-          <div class="service-card__tags">
-            <span class="service-card__tag">設廠選址</span>
-            <span class="service-card__tag">地主活化</span>
-            <span class="service-card__tag">供應鏈</span>
-          </div>
-        </article>
-        <article class="service-card">
-          <h3 class="service-card__title">工業廠房／工業地交易風險初判</h3>
-          <p class="service-card__desc">建物合法性、地目與使用分區、鄰地關係、既有租約、稅務與融資條件 — 買前先排雷，比買後發現問題便宜太多。</p>
-          <div class="service-card__tags">
-            <span class="service-card__tag">風險防範</span>
-            <span class="service-card__tag">法規</span>
-            <span class="service-card__tag">交易分析</span>
-          </div>
-        </article>
-      </div>
-    </div>
-  </section>
-
-  <section class="section section--soft">
-    <div class="container">
-      <div class="section__head">
-        <div class="section__eyebrow">我最近寫的</div>
-        <h2 class="section__title">最新文章</h2>
-        <p class="section__lede">三個分類的最新三篇 — 寫給會回來看的人。</p>
+  <!-- Insights grid -->
+  <section class="v2-section">
+    <div class="v2-wrap">
+      <div class="v2-related__head">
+        <div>
+          <div class="v2-section__kicker">LATEST INSIGHTS</div>
+          <h2 class="v2-section__title">最新內容累積</h2>
+        </div>
+        <a class="v2-btn v2-btn--ghost" href="/market-view/">全部內容 <span class="v2-btn__arrow">→</span></a>
       </div>
       {all.length > 0 ? (
-        <div class="cards">
+        <div class="v2-insights">
           {all.map((a) => (
-            <ArticleCard
-              href={`/${a._cat}/${a.slug}/`}
+            <V4Insight
+              href={`/v4/${a._cat}/${a.slug}/`}
               title={a.data.title}
               excerpt={a.data.excerpt}
               date={a.data.date}
@@ -100,30 +133,22 @@ const all = (
           ))}
         </div>
       ) : (
-        <p class="center muted">文章準備中 — 開站首批預計 6 篇。</p>
+        <p style="text-align:center;color:var(--v2-text-soft);">內容持續累積中。</p>
       )}
-      <div class="center mt-32">
-        <a class="btn btn--ghost" href="/market-view/">看全部文章 →</a>
-      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <PartnerNote variant="short" />
-    </div>
-  </section>
-
-  <section class="section section--soft">
-    <div class="container center">
-      <div class="section__eyebrow">聯繫</div>
-      <h2 class="section__title mb-16">若您有工業不動產相關需求</h2>
-      <p class="muted mb-24">{SITE.workHours}</p>
-      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
-        <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫</a>
-        <a class="btn btn--ghost btn--lg" href={`tel:${SITE.contact.phone}`}>撥打電話</a>
-        <a class="btn btn--ghost btn--lg" href="/contact/">全部聯繫方式</a>
+  <!-- CTA band -->
+  <section class="v2-cta">
+    <div class="v2-wrap v2-cta__inner">
+      <h2 class="v2-cta__title">
+        若有工業不動產相關需求，<br/>歡迎直接聯繫。
+      </h2>
+      <div class="v2-cta__actions">
+        <a class="v2-btn v2-btn--primary" href="https://line.me/ti/p/~0953909777">LINE 聯繫 <span class="v2-btn__arrow">→</span></a>
+        <a class="v2-btn v2-btn--ghost-light" href="/contact/">更多聯繫方式</a>
+        <div class="v2-cta__note">實際仲介服務與交易承接由瑞禾開發合作辦理</div>
       </div>
     </div>
   </section>
-</Base>
+</V4Base>

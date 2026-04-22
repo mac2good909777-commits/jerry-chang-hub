@@ -1,39 +1,71 @@
 ---
-import Base from '../layouts/Base.astro';
-import { SITE } from '../consts';
+import V4Base from '../layouts/V4Base.astro';
+const PHONE = '0953-909-777';
+const LINE_ID = '0953909777';
+const FB_URL = 'https://www.facebook.com/industrial.realestate.notes';
 ---
-<Base title={`聯繫｜${SITE.author}`} description="張現傑 — LINE、電話、Email 聯繫方式與 vCard 下載。">
-  <section class="cat-hero">
-    <div class="container">
-      <div class="cat-hero__eyebrow" style="color: var(--c-blue);">CONTACT</div>
-      <h1 class="cat-hero__title">聯繫我</h1>
-      <p class="cat-hero__sub">若您或身邊朋友有工業不動產相關需求，歡迎直接聯繫</p>
+<V4Base title="聯繫｜張現傑 × 睦聚地產" description="工業不動產相關諮詢、市場判讀、前期比較、交易風險討論，歡迎聯繫。實際仲介服務與交易承接由瑞禾開發合作辦理。">
+  <section class="v2-cat-hero">
+    <div class="v2-wrap v2-cat-hero__inner">
+      <div class="v2-cat-hero__kicker">CONTACT</div>
+      <h1 class="v2-cat-hero__title">聯繫</h1>
+      <p class="v2-cat-hero__desc">
+        若您正在考慮工業不動產的相關決策 — 市場判讀、設廠選址、資產活化、交易風險等 — 可直接透過以下任一方式聯繫。若涉及實際仲介或交易承接，會由瑞禾開發合作辦理。
+      </p>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container">
-      <div class="contact-grid">
+  <section class="v2-section">
+    <div class="v2-wrap">
+      <div style="display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start;">
         <div>
-          <h2 class="mb-16">聯繫方式</h2>
-          <p class="muted mb-24">{SITE.workHours}。LINE 為主要聯繫方式，看到訊息會在上班時段內回覆。</p>
-          <div class="contact-buttons">
-            <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫（主要）</a>
-            <a class="btn btn--ghost btn--lg" href={`tel:${SITE.contact.phone}`}>撥打電話 {SITE.contact.phone}</a>
-            <a class="btn btn--ghost btn--lg" href={`mailto:${SITE.contact.email}`}>Email：{SITE.contact.email}</a>
-            <a class="btn btn--gold btn--lg" href="/images/chang.vcf" download>下載名片（vCard）一鍵存入通訊錄</a>
-            <a class="btn btn--ghost" href={SITE.contact.fbPage}>Facebook 粉絲頁「工業地產筆記」</a>
+          <div class="v2-section__kicker">CHANNELS</div>
+          <h2 style="margin-bottom:32px;">聯繫方式</h2>
+          <div style="display:flex;flex-direction:column;gap:0;">
+            <a href={`https://line.me/ti/p/~${LINE_ID}`} style="display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--v2-line);color:var(--v2-ink);">
+              <div>
+                <div style="font-weight:500;margin-bottom:4px;">LINE（主要）</div>
+                <div style="color:var(--v2-text-soft);">ID：{LINE_ID}　看到訊息會在上班時段內回覆</div>
+              </div>
+              <span style="color:var(--v2-navy);">→</span>
+            </a>
+            <a href={`tel:${PHONE.replace(/-/g,'')}`} style="display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--v2-line);color:var(--v2-ink);">
+              <div>
+                <div style="font-weight:500;margin-bottom:4px;">電話</div>
+                <div style="color:var(--v2-text-soft);">{PHONE}</div>
+              </div>
+              <span style="color:var(--v2-navy);">→</span>
+            </a>
+            <a href={FB_URL} style="display:flex;justify-content:space-between;align-items:center;padding:28px 0;border-bottom:1px solid var(--v2-line);color:var(--v2-ink);">
+              <div>
+                <div style="font-weight:500;margin-bottom:4px;">Facebook</div>
+                <div style="color:var(--v2-text-soft);">粉絲專頁「工業地產筆記」</div>
+              </div>
+              <span style="color:var(--v2-navy);">→</span>
+            </a>
           </div>
-          <p class="muted mt-32" style="font-size:13px;">
-            主要受理工業不動產相關諮詢 — 物件買賣、設廠選址、資產活化、交易風險初判。若為住商、租屋或其他類型不動產，可協助轉介合適的朋友。
+          <p style="margin-top:48px;color:var(--v2-text-soft);line-height:1.9;">
+            主要受理工業不動產相關諮詢 — 市場判讀、設廠選址、資產活化、交易風險初判、前期決策比較。若為住商、租屋或其他類型不動產，可協助轉介合適的合作對象。
           </p>
+          <p style="margin-top:16px;color:var(--v2-text-soft);line-height:1.9;">
+            實際仲介服務、交易承接與案件執行，目前與瑞禾開發合作辦理。
+          </p>
+          <div style="margin-top:32px;padding:20px 24px;border-left:2px solid var(--v2-line);background:var(--v2-bg-cream);">
+            <div style="color:var(--v2-navy);letter-spacing:0.14em;font-size:var(--v2-fs-sm);margin-bottom:10px;">合作辦理資訊｜瑞禾開發</div>
+            <div style="color:var(--v2-text);line-height:1.9;">
+              南屯總部｜台中市南屯區益豐路四段 91 號（T: 04-2380-1259）<br/>
+              嘉義營業處｜太保市崙頂里崙子頂 1-64 號（T: 05-3711-110）<br/>
+              客服專線｜0800-329-029　/　合作窗口：a.ruei.he@gmail.com
+            </div>
+          </div>
         </div>
-        <div class="qr-box">
-          <div class="qr-box__placeholder">LINE QR Code<br/>（/public/images/line-qr.png）</div>
-          <div style="font-weight:700;color:var(--c-ink);margin-bottom:4px;">{SITE.author}</div>
-          <div class="muted" style="font-size:13px;">工業不動產・設廠評估整合服務</div>
+        <div style="background:var(--v2-bg-cream);padding:48px 36px;text-align:center;">
+          <div class="v2-section__kicker" style="justify-content:center;display:inline-flex;">LINE QR CODE</div>
+          <img src="/images/line-qr.png" alt="張現傑 LINE QR Code（ID 0953909777）" style="width:220px;height:220px;margin:20px auto;display:block;object-fit:contain;background:#fff;"/>
+          <div style="color:var(--v2-ink);margin-top:16px;font-weight:500;">張現傑 × 睦聚地產</div>
+          <div style="color:var(--v2-text-soft);margin-top:4px;">工業不動產市場觀察・產業資訊分析</div>
         </div>
       </div>
     </div>
   </section>
-</Base>
+</V4Base>

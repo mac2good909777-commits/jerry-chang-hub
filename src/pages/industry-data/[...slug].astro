@@ -1,20 +1,17 @@
 ---
-import Article from '../../layouts/Article.astro';
+import V4Article from '../../layouts/V4Article.astro';
 import { getCollection } from 'astro:content';
 
 export async function getStaticPaths() {
   const entries = await getCollection('industry-data', ({ data }) => !data.draft);
-  return entries.map((entry) => ({
-    params: { slug: entry.slug },
-    props: { entry },
-  }));
+  return entries.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }));
 }
 
 const { entry } = Astro.props as { entry: any };
 const { Content } = await entry.render();
 const d = entry.data;
 ---
-<Article
+<V4Article
   title={d.title}
   date={d.date}
   tags={d.tags}
@@ -25,4 +22,4 @@ const d = entry.data;
   slug={entry.slug}
 >
   <Content />
-</Article>
+</V4Article>

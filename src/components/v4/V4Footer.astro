@@ -1,5 +1,4 @@
 ---
-import VersionSwitch from '../VersionSwitch.astro';
 const year = new Date().getFullYear();
 const buildDate = new Date().toISOString().slice(0, 10);
 const PHONE = '0953-909-777';
@@ -18,18 +17,18 @@ const FB_URL = 'https://www.facebook.com/industrial.realestate.notes';
       <div class="v2-footer__col">
         <div class="v2-footer__col-title">內容分類</div>
         <ul>
-          <li><a href="/v4/industry-data/">產業資訊</a></li>
-          <li><a href="/v4/market-view/">市場觀察</a></li>
-          <li><a href="/v4/insights/">其他資訊</a></li>
+          <li><a href="/industry-data/">產業資訊</a></li>
+          <li><a href="/market-view/">市場觀察</a></li>
+          <li><a href="/insights/">其他資訊</a></li>
         </ul>
       </div>
       <div class="v2-footer__col">
         <div class="v2-footer__col-title">關於</div>
         <ul>
-          <li><a href="/v4/about/">關於我＆睦聚地產</a></li>
-          <li><a href="/v4/about/#focus">本站聚焦內容</a></li>
-          <li><a href="/v4/about/#timeline">專業歷程</a></li>
-          <li><a href="/v4/about/#partnership">合作說明</a></li>
+          <li><a href="/about/">關於我＆睦聚地產</a></li>
+          <li><a href="/about/#focus">本站聚焦內容</a></li>
+          <li><a href="/about/#timeline">專業歷程</a></li>
+          <li><a href="/about/#partnership">合作說明</a></li>
         </ul>
       </div>
       <div class="v2-footer__col">
@@ -48,4 +47,3 @@ const FB_URL = 'https://www.facebook.com/industrial.realestate.notes';
   </div>
 </footer>
 
-<VersionSwitch current="v4" />
