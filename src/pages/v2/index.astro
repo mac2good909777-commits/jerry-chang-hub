@@ -1,0 +1,155 @@
+---
+import V2Base from '../../layouts/V2Base.astro';
+import V2Insight from '../../components/v2/V2Insight.astro';
+import { SITE } from '../../consts';
+import { getCollection } from 'astro:content';
+
+type CatKey = 'industry-data' | 'market-view' | 'insights';
+const cats: CatKey[] = ['industry-data', 'market-view', 'insights'];
+
+const all = (
+  await Promise.all(cats.map(async (c) => {
+    const items = await getCollection(c, ({ data }) => !data.draft);
+    return items.map((i) => ({ ...i, _cat: c as CatKey }));
+  }))
+).flat()
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 6);
+---
+<V2Base>
+  <!-- Full-bleed hero -->
+  <section class="v2-hero">
+    <div class="v2-wrap v2-hero__inner">
+      <div class="v2-hero__eyebrow">張現傑 · Industrial Real Estate</div>
+      <h1 class="v2-hero__title">
+        工業不動產的判讀、選址與風險初判 — <em>以人為主角的觀點中樞</em>
+      </h1>
+      <p class="v2-hero__lede">
+        從物件媒合，延伸到企業設廠選址、地主資產活化、土地開發前期評估。這裡是 {SITE.author} 個人觀點、分析與經驗的長期發布地。
+      </p>
+      <div class="v2-hero__cta">
+        <a class="v2-btn v2-btn--primary" href="/v2/contact/">直接聯繫 <span class="v2-btn__arrow">→</span></a>
+        <a class="v2-btn v2-btn--ghost-light" href="/v2/about/">關於我</a>
+      </div>
+    </div>
+    <div class="v2-hero__scroll">SCROLL ↓</div>
+  </section>
+
+  <!-- Stats strip -->
+  <section class="v2-section" style="padding-top:0;margin-top:-40px;position:relative;z-index:3;">
+    <div class="v2-wrap">
+      <div class="v2-stats">
+        <div class="v2-stat">
+          <div class="v2-stat__num">10<sup>+</sup></div>
+          <div class="v2-stat__label">年工業不動產實務</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num">3</div>
+          <div class="v2-stat__label">核心服務領域</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num">{all.length}</div>
+          <div class="v2-stat__label">累積觀點文章</div>
+        </div>
+        <div class="v2-stat">
+          <div class="v2-stat__num" style="font-size:var(--v2-fs-md);line-height:1.4;">台中 彰化 苗栗 南投<br/>各產業園區</div>
+          <div class="v2-stat__label">主要耕耘區域</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="v2-section">
+    <div class="v2-wrap">
+      <div class="v2-section__kicker">SERVICES</div>
+      <h2 class="v2-section__title">三個我花最多時間處理的問題</h2>
+      <p class="v2-section__lede">
+        不是通包 — 而是這三類問題我花過最多時間、處理過最多類似情境。若你的需求落在這三個範圍，我能給你最直接的幫助。
+      </p>
+    </div>
+    <div class="v2-wrap">
+      <div class="v2-pillars">
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">01 / INDUSTRY DATA</div>
+          <div class="v2-pillar__title">工業不動產<br/>市場判讀</div>
+          <div class="v2-pillar__desc">實價登錄彙整、特定工業區的交易結構、近期成交訊號的解讀 — 讓「行情」從感覺升級為有資料支撐的判斷。</div>
+          <a class="v2-pillar__more" href="/v2/industry-data/">看產業資訊</a>
+        </div>
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">02 / MARKET VIEW</div>
+          <div class="v2-pillar__title">設廠選址 ×<br/>資產活化</div>
+          <div class="v2-pillar__desc">面向企業方的設廠選址比較；面向地主方的閒置廠房或土地活化評估。從需求條件到候選清單，逐步收斂。</div>
+          <a class="v2-pillar__more" href="/v2/market-view/">看市場觀察</a>
+        </div>
+        <div class="v2-pillar">
+          <div class="v2-pillar__num">03 / INSIGHTS</div>
+          <div class="v2-pillar__title">工業廠房<br/>交易風險初判</div>
+          <div class="v2-pillar__desc">建物合法性、地目與使用分區、鄰地關係、既有租約、稅務融資條件 — 買前先排雷，比買後發現問題便宜太多。</div>
+          <a class="v2-pillar__more" href="/v2/insights/">看其他資訊</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Editorial split -->
+  <section class="v2-section v2-section--cream">
+    <div class="v2-wrap">
+      <div class="v2-split">
+        <div class="v2-split__media">
+          <div class="v2-split__media-label">About 張現傑</div>
+        </div>
+        <div class="v2-split__content">
+          <div class="v2-section__kicker">ABOUT</div>
+          <h2>長期耕耘的工業不動產專業路線</h2>
+          <p>我是 {SITE.author}。從信義的住商基礎訓練、磐石的地政實務，到工業不動產的長期深耕 — 每一段都在累積「交易為什麼會卡住」「廠房條件對價格的真實影響」這類經驗。</p>
+          <p>現階段透過專案式合作，服務範圍從過去的單點媒合，延伸到設廠選址比較、資產活化評估、土地開發前期判斷。這個網站是我個人觀點、分析與文章的長期發布地 — 不是公司官網，也不放任何物件。</p>
+          <a class="v2-btn v2-btn--ghost" href="/v2/about/">完整自介 <span class="v2-btn__arrow">→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Insights grid -->
+  <section class="v2-section">
+    <div class="v2-wrap">
+      <div class="v2-related__head">
+        <div>
+          <div class="v2-section__kicker">LATEST INSIGHTS</div>
+          <h2 class="v2-section__title">最新觀點</h2>
+        </div>
+        <a class="v2-btn v2-btn--ghost" href="/v2/market-view/">全部文章 <span class="v2-btn__arrow">→</span></a>
+      </div>
+      {all.length > 0 ? (
+        <div class="v2-insights">
+          {all.map((a) => (
+            <V2Insight
+              href={`/v2/${a._cat}/${a.slug}/`}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              date={a.data.date}
+              category={a._cat}
+              coverImage={a.data.coverImage}
+            />
+          ))}
+        </div>
+      ) : (
+        <p style="text-align:center;color:var(--v2-text-soft);">文章準備中。</p>
+      )}
+    </div>
+  </section>
+
+  <!-- CTA band -->
+  <section class="v2-cta">
+    <div class="v2-wrap v2-cta__inner">
+      <h2 class="v2-cta__title">
+        若您或身邊朋友有工業不動產相關需求 — <br/>歡迎直接聯繫。
+      </h2>
+      <div class="v2-cta__actions">
+        <a class="v2-btn v2-btn--primary" href={SITE.contact.line}>LINE 聯繫 <span class="v2-btn__arrow">→</span></a>
+        <a class="v2-btn v2-btn--ghost-light" href="/v2/contact/">更多聯繫方式</a>
+        <div class="v2-cta__note">{SITE.workHours}</div>
+      </div>
+    </div>
+  </section>
+</V2Base>

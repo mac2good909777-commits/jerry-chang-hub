@@ -1,0 +1,52 @@
+---
+interface Props { dark?: boolean; }
+const { dark = false } = Astro.props;
+const V4_BRAND = '張現傑 × 睦聚地產';
+const V4_NAV = [
+  { href: '/v4/about/', label: '關於我們' },
+  { href: '/v4/industry-data/', label: '產業資訊' },
+  { href: '/v4/market-view/', label: '市場觀察' },
+  { href: '/v4/insights/', label: '其他資訊' },
+  { href: '/v4/contact/', label: '聯繫' },
+];
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => {
+  const h = href.replace(/\/$/, '') || '/';
+  if (h === '/v4') return pathname === '/v4';
+  return pathname === h || pathname.startsWith(h + '/');
+};
+---
+<header class="v2-nav" data-dark={dark ? 'true' : 'false'}>
+  <div class="v2-wrap v2-nav__inner">
+    <a class="v2-nav__brand" href="/v4/">
+      <span class="v2-nav__brand-mark"></span>
+      <span>{V4_BRAND}</span>
+    </a>
+    <nav class="v2-nav__links" aria-label="主要導覽">
+      {V4_NAV.filter(i => i.label !== '聯繫').map(item => (
+        <a class="v2-nav__link" href={item.href} data-current={isCurrent(item.href)}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="v2-nav__cta" href="/v4/contact/">聯繫</a>
+    <button class="v2-nav__hamburger" type="button" aria-label="選單" data-toggle="v4-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="square"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
+    </button>
+  </div>
+  <div class="v2-nav__mobile" data-open="false">
+    {V4_NAV.map(item => (<a href={item.href}>{item.label}</a>))}
+  </div>
+</header>
+
+<script is:inline>
+  (function(){
+    var btn = document.querySelector('[data-toggle="v4-nav"]');
+    var panels = document.querySelectorAll('.v2-nav__mobile');
+    if (!btn || !panels.length) return;
+    btn.addEventListener('click', function(){
+      panels.forEach(function(p){
+        var open = p.getAttribute('data-open') === 'true';
+        p.setAttribute('data-open', String(!open));
+      });
+    });
+  })();
+</script>

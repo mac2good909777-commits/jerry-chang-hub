@@ -1,0 +1,22 @@
+{
+  "name": "jerry-chang-hub",
+  "type": "module",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "cms": "decap-server"
+  },
+  "dependencies": {
+    "astro": "^5.0.0",
+    "@astrojs/rss": "^4.0.0",
+    "@astrojs/sitemap": "^3.2.0"
+  },
+  "devDependencies": {
+    "decap-server": "^3.1.4"
+  }
+}

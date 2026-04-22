@@ -1,0 +1,50 @@
+---
+interface Props { current: 'v1' | 'v2' | 'v3' | 'v4'; }
+const { current } = Astro.props;
+const versions: Array<{ key: 'v1' | 'v2' | 'v3' | 'v4'; href: string; label: string }> = [
+  { key: 'v1', href: '/',    label: 'v1' },
+  { key: 'v2', href: '/v2/', label: 'v2' },
+  { key: 'v3', href: '/v3/', label: 'v3' },
+  { key: 'v4', href: '/v4/', label: 'v4' },
+];
+---
+<div class="version-switch" aria-label="版本切換">
+  <span class="version-switch__label">版本</span>
+  {versions.map(v => (
+    <a
+      class="version-switch__link"
+      href={v.href}
+      data-current={v.key === current ? 'true' : 'false'}
+      aria-current={v.key === current ? 'page' : undefined}
+    >{v.label}</a>
+  ))}
+</div>
+
+<style is:global>
+  .version-switch {
+    position: fixed; right: 16px; bottom: 16px; z-index: 100;
+    display: inline-flex; align-items: center; gap: 2px;
+    background: #0A0A0A; color: rgba(255,255,255,0.9);
+    padding: 6px 8px 6px 14px;
+    border-radius: 999px;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.22);
+    font-family: "Noto Serif TC", "Noto Serif", Georgia, serif;
+    font-size: 13px; letter-spacing: 0.08em;
+  }
+  .version-switch__label {
+    color: rgba(255,255,255,0.55);
+    margin-right: 10px; font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  }
+  .version-switch__link {
+    color: rgba(255,255,255,0.75);
+    padding: 4px 10px; border-radius: 999px;
+    text-decoration: none; font-weight: 500;
+    transition: background .15s ease, color .15s ease;
+  }
+  .version-switch__link:hover { color: #fff; background: rgba(255,255,255,0.08); }
+  .version-switch__link[data-current="true"] {
+    background: #fff; color: #002349; font-weight: 600;
+  }
+  /* 原本的 v2-version-switch 讓位給統一的 VersionSwitch */
+  .v2-version-switch { display: none !important; }
+</style>

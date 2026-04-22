@@ -1,0 +1,45 @@
+---
+import { NAV_ITEMS, SITE } from '../../consts';
+
+interface Props { dark?: boolean; }
+const { dark = false } = Astro.props;
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const isCurrent = (href: string) => {
+  const h = ('/v3' + href).replace(/\/$/, '') || '/v3';
+  if (h === '/v3') return pathname === '/v3';
+  return pathname === h || pathname.startsWith(h + '/');
+};
+const v3Items = NAV_ITEMS.map(item => ({ ...item, href: '/v3' + item.href }));
+---
+<header class="v3-nav" data-dark={dark ? 'true' : 'false'}>
+  <div class="v3-wrap v3-nav__inner">
+    <a class="v3-nav__brand" href="/v3/">
+      <span class="v3-nav__brand-mark"></span>
+      <span>{SITE.author}</span>
+    </a>
+    <nav class="v3-nav__links" aria-label="主要導覽">
+      {v3Items.filter(i => i.label !== '聯繫').map(item => (
+        <a class="v3-nav__link" href={item.href} data-current={isCurrent(item.href.replace('/v3',''))}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="v3-nav__cta" href="/v3/contact/">聯繫</a>
+    <button class="v3-nav__hamburger" type="button" aria-label="選單" data-toggle="v3-nav">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="square"><line x1="4" y1="8" x2="20" y2="8"/><line x1="4" y1="16" x2="20" y2="16"/></svg>
+    </button>
+  </div>
+  <div class="v3-nav__mobile" data-open="false">
+    {v3Items.map(item => (<a href={item.href}>{item.label}</a>))}
+  </div>
+</header>
+
+<script is:inline>
+  (function(){
+    var btn = document.querySelector('[data-toggle="v3-nav"]');
+    var panel = document.querySelector('.v3-nav__mobile');
+    if (!btn || !panel) return;
+    btn.addEventListener('click', function(){
+      var open = panel.getAttribute('data-open') === 'true';
+      panel.setAttribute('data-open', String(!open));
+    });
+  })();
+</script>

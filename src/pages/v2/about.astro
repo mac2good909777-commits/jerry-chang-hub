@@ -1,0 +1,111 @@
+---
+import V2Base from '../../layouts/V2Base.astro';
+import { SITE } from '../../consts';
+---
+<V2Base title={`關於我｜${SITE.author}`} description="張現傑 — 工業不動產市場判讀、設廠選址、廠房風險初判。個人專業歷程與服務範圍說明。">
+  <section class="v2-cat-hero">
+    <div class="v2-wrap v2-cat-hero__inner">
+      <div class="v2-cat-hero__kicker">ABOUT</div>
+      <h1 class="v2-cat-hero__title">關於我</h1>
+      <p class="v2-cat-hero__desc">
+        {SITE.author} — 工業不動產．設廠評估整合服務。這一頁完整說明我在做什麼、服務哪些人、以及這份工作一路走來的累積。
+      </p>
+    </div>
+  </section>
+
+  <section class="v2-section">
+    <div class="v2-wrap--read">
+      <div class="v2-section__kicker">POSITION</div>
+      <h2 class="v2-section__title" style="font-size:clamp(24px,3vw,36px);">一句話說完我在做什麼</h2>
+      <p style="font-size:19px;line-height:1.8;">
+        長期服務於工業不動產領域。過去以物件媒合為主；現階段整合協作資源後，可協助的範圍從「找廠找地」延伸到設廠選址比較、閒置資產活化、土地開發前期評估等較完整的前中段判斷工作。
+      </p>
+    </div>
+  </section>
+
+  <section class="v2-section v2-section--cream">
+    <div class="v2-wrap--read">
+      <div class="v2-section__kicker">SERVICES</div>
+      <h2 class="v2-section__title" style="font-size:clamp(24px,3vw,36px);">主要服務內容</h2>
+
+      <div style="margin-top:40px;padding-bottom:32px;border-bottom:1px solid var(--v2-line);">
+        <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:13px;letter-spacing:0.14em;margin-bottom:8px;">01 / MARKET READING</div>
+        <h3 style="font-size:24px;margin-bottom:16px;">工業不動產市場判讀與交易評估</h3>
+        <p>特定工業區的實價登錄彙整、交易結構變化解讀、價格區間與買方結構判讀。面向「想先把資訊搞清楚再做決定」的買賣雙方。</p>
+      </div>
+
+      <div style="margin-top:32px;padding-bottom:32px;border-bottom:1px solid var(--v2-line);">
+        <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:13px;letter-spacing:0.14em;margin-bottom:8px;">02 / SITE SELECTION</div>
+        <h3 style="font-size:24px;margin-bottom:16px;">企業設廠選址與資產活化協助</h3>
+        <p>給企業方的選址比較（區位、廠區條件、法規、鄰地風險）；給地主方的閒置廠房或土地活化評估（自建、招租、出售、合作開發的利弊比較）。</p>
+      </div>
+
+      <div style="margin-top:32px;">
+        <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:13px;letter-spacing:0.14em;margin-bottom:8px;">03 / RISK SCREEN</div>
+        <h3 style="font-size:24px;margin-bottom:16px;">工業廠房／工業地交易風險初判</h3>
+        <p>建物合法性、地目與使用分區、道路與鄰地關係、既有租約、稅務與融資條件的初步檢核。這一段通常是買賣雙方最容易忽略、但事後最貴的地方。</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="v2-section" id="服務對象">
+    <div class="v2-wrap--read">
+      <div class="v2-section__kicker">CLIENT PROFILE</div>
+      <h2 class="v2-section__title" style="font-size:clamp(24px,3vw,36px);">服務對象與常見需求情境</h2>
+      <ul style="font-size:17px;line-height:1.9;padding-left:24px;">
+        <li>中小製造業需要自置廠房或擴廠，想先比較 2–3 個候選區位的實際成本與風險。</li>
+        <li>地主持有工業地或老舊廠房，想評估自建、招租、出售三條路徑哪一條比較適合。</li>
+        <li>投資方對特定工業區有興趣，需要一份冷靜的市場判讀作為進場前的基礎。</li>
+        <li>交易案接近成交階段，需要獨立的第三方把關交易條件與潛在風險。</li>
+        <li>跨縣市比較：例如台中 vs 彰化、北科 vs 中科周邊，想聽聽實際差異。</li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="v2-section v2-section--dark" id="專業資歷">
+    <div class="v2-wrap--read">
+      <div class="v2-section__kicker">TIMELINE</div>
+      <h2 class="v2-section__title" style="color:#fff;font-size:clamp(24px,3vw,36px);">專業資歷</h2>
+      <div style="margin-top:40px;">
+        <div style="padding:24px 0;border-top:1px solid rgba(255,255,255,0.15);display:grid;grid-template-columns:140px 1fr;gap:32px;">
+          <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:14px;letter-spacing:0.14em;">EARLY</div>
+          <div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:#fff;margin-bottom:6px;">信義房屋 — 住商不動產基礎訓練</div>
+            <div style="color:rgba(255,255,255,0.72);font-size:15px;">建立不動產交易基本功、服務流程與客戶溝通訓練。</div>
+          </div>
+        </div>
+        <div style="padding:24px 0;border-top:1px solid rgba(255,255,255,0.15);display:grid;grid-template-columns:140px 1fr;gap:32px;">
+          <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:14px;letter-spacing:0.14em;">GROWTH</div>
+          <div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:#fff;margin-bottom:6px;">磐石地政士 — 地政專業養成</div>
+            <div style="color:rgba(255,255,255,0.72);font-size:15px;">深入地政、過戶、稅務實務，對「交易為什麼會卡住」有了第一線的理解。</div>
+          </div>
+        </div>
+        <div style="padding:24px 0;border-top:1px solid rgba(255,255,255,0.15);display:grid;grid-template-columns:140px 1fr;gap:32px;">
+          <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:14px;letter-spacing:0.14em;">FOCUS</div>
+          <div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:#fff;margin-bottom:6px;">睦聚工業地產 — 工業不動產專業專注期</div>
+            <div style="color:rgba(255,255,255,0.72);font-size:15px;">長期聚焦工業不動產，累積特定工業區的實際成交、買方結構、廠房條件判讀經驗。</div>
+          </div>
+        </div>
+        <div style="padding:24px 0 0;border-top:1px solid rgba(255,255,255,0.15);display:grid;grid-template-columns:140px 1fr;gap:32px;">
+          <div style="font-family:'Noto Serif TC',serif;color:var(--v2-gold);font-size:14px;letter-spacing:0.14em;">CURRENT</div>
+          <div>
+            <div style="font-family:'Noto Serif TC',serif;font-size:20px;color:#fff;margin-bottom:6px;">整合協作期</div>
+            <div style="color:rgba(255,255,255,0.72);font-size:15px;">與瑞禾開發進行專案式合作，使過去以「單點媒合」為主的服務，延伸到設廠選址比較、資產活化評估、土地開發前期判斷。本站作為個人觀點、分析與文章的長期發布地。</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="v2-cta">
+    <div class="v2-wrap v2-cta__inner">
+      <h2 class="v2-cta__title">有工業不動產相關需求嗎？<br/>歡迎直接聯繫。</h2>
+      <div class="v2-cta__actions">
+        <a class="v2-btn v2-btn--primary" href={SITE.contact.line}>LINE 聯繫 <span class="v2-btn__arrow">→</span></a>
+        <a class="v2-btn v2-btn--ghost-light" href="/v2/contact/">更多聯繫方式</a>
+      </div>
+    </div>
+  </section>
+</V2Base>

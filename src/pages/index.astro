@@ -1,0 +1,129 @@
+---
+import Base from '../layouts/Base.astro';
+import ArticleCard from '../components/ArticleCard.astro';
+import PartnerNote from '../components/PartnerNote.astro';
+import { SITE } from '../consts';
+import { getCollection } from 'astro:content';
+
+type CatKey = 'industry-data' | 'market-view' | 'insights';
+const cats: CatKey[] = ['industry-data', 'market-view', 'insights'];
+
+const all = (
+  await Promise.all(cats.map(async (c) => {
+    const items = await getCollection(c, ({ data }) => !data.draft);
+    return items.map((i) => ({ ...i, _cat: c as CatKey }));
+  }))
+).flat()
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+  .slice(0, 3);
+---
+<Base translucentNav={true}>
+  <section class="hero">
+    <div class="container hero__grid">
+      <div>
+        <div class="hero__eyebrow">工業不動產．個人專業平台</div>
+        <h1 class="hero__title">{SITE.author}</h1>
+        <p class="hero__lede">
+          從物件媒合，到企業設廠選址、地主資產活化與土地開發前期評估 — 提供更完整的整合協助。這裡是我個人觀點、分析與經驗的長期發布地。
+        </p>
+        <div class="hero__cta">
+          <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫</a>
+          <a class="btn btn--ghost btn--lg" href="/about/">關於我</a>
+        </div>
+      </div>
+      <div class="hero__portrait" aria-label="個人形象區">
+        <div>
+          <div style="font-size:48px;font-weight:700;margin-bottom:8px;">張現傑</div>
+          <div style="font-size:15px;opacity:0.85;">工業不動產<br/>設廠評估整合服務</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__eyebrow">核心服務</div>
+        <h2 class="section__title">目前可協助的三件事</h2>
+        <p class="section__lede">不是通包，是這三類問題我花過最多時間、處理過最多類似情境。</p>
+      </div>
+      <div class="services">
+        <article class="service-card">
+          <h3 class="service-card__title">工業不動產市場判讀</h3>
+          <p class="service-card__desc">實價登錄彙整、特定工業區的交易結構、近期成交訊號的解讀 — 幫你把「行情」從感覺升級為有資料支撐的判斷。</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">實價登錄</span>
+            <span class="service-card__tag">交易分析</span>
+            <span class="service-card__tag">趨勢判讀</span>
+          </div>
+        </article>
+        <article class="service-card">
+          <h3 class="service-card__title">企業設廠選址 × 資產活化</h3>
+          <p class="service-card__desc">面向企業方的設廠選址比較、地主方的閒置廠房或土地活化評估；從需求條件到候選清單到風險初判，逐步收斂。</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">設廠選址</span>
+            <span class="service-card__tag">地主活化</span>
+            <span class="service-card__tag">供應鏈</span>
+          </div>
+        </article>
+        <article class="service-card">
+          <h3 class="service-card__title">工業廠房／工業地交易風險初判</h3>
+          <p class="service-card__desc">建物合法性、地目與使用分區、鄰地關係、既有租約、稅務與融資條件 — 買前先排雷，比買後發現問題便宜太多。</p>
+          <div class="service-card__tags">
+            <span class="service-card__tag">風險防範</span>
+            <span class="service-card__tag">法規</span>
+            <span class="service-card__tag">交易分析</span>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container">
+      <div class="section__head">
+        <div class="section__eyebrow">我最近寫的</div>
+        <h2 class="section__title">最新文章</h2>
+        <p class="section__lede">三個分類的最新三篇 — 寫給會回來看的人。</p>
+      </div>
+      {all.length > 0 ? (
+        <div class="cards">
+          {all.map((a) => (
+            <ArticleCard
+              href={`/${a._cat}/${a.slug}/`}
+              title={a.data.title}
+              excerpt={a.data.excerpt}
+              date={a.data.date}
+              category={a._cat}
+              coverImage={a.data.coverImage}
+            />
+          ))}
+        </div>
+      ) : (
+        <p class="center muted">文章準備中 — 開站首批預計 6 篇。</p>
+      )}
+      <div class="center mt-32">
+        <a class="btn btn--ghost" href="/market-view/">看全部文章 →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <PartnerNote variant="short" />
+    </div>
+  </section>
+
+  <section class="section section--soft">
+    <div class="container center">
+      <div class="section__eyebrow">聯繫</div>
+      <h2 class="section__title mb-16">若您有工業不動產相關需求</h2>
+      <p class="muted mb-24">{SITE.workHours}</p>
+      <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;">
+        <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫</a>
+        <a class="btn btn--ghost btn--lg" href={`tel:${SITE.contact.phone}`}>撥打電話</a>
+        <a class="btn btn--ghost btn--lg" href="/contact/">全部聯繫方式</a>
+      </div>
+    </div>
+  </section>
+</Base>

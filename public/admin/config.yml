@@ -1,0 +1,102 @@
+# Decap CMS 設定檔
+#
+# ===== 本機測試模式（立即可用，不需 OAuth） =====
+# 保留下方 local_backend 為 true，執行：
+#   Terminal A: npm run dev
+#   Terminal B: npm run cms
+# 然後開 http://localhost:4321/admin/
+# 所有編輯會「直接寫回本機檔案」— 可立即在 http://localhost:4321/ 看到結果。
+#
+# ===== 上線模式（GitHub OAuth） =====
+# 1. 註解掉 local_backend
+# 2. 把下方 repo 改成實際 GitHub 帳號/Repo
+# 3. 在 GitHub Settings → Developer settings → OAuth Apps 建立 App
+# 4. 架設 OAuth 中繼（擇一）：
+#    - Cloudflare Worker：github.com/sterlingwes/decap-proxy（最快，零成本）
+#    - Netlify git-gateway：改 backend name 為 git-gateway（不需 OAuth App）
+# 5. 把 base_url 改為你的中繼網址
+
+local_backend: true   # ← 上線時註解掉或刪除
+
+backend:
+  name: github
+  repo: YOUR_GITHUB_USER/jerry-chang-hub   # ← 上線前替換為實際 repo
+  branch: main
+  base_url: https://your-oauth-proxy.example.com  # ← 上線前替換
+
+media_folder: "public/images"
+public_folder: "/images"
+site_url: "http://localhost:4321"
+display_url: "http://localhost:4321"
+locale: "zh_Hant"
+show_preview_links: true
+
+collections:
+  - name: "industry-data"
+    label: "產業資訊"
+    folder: "src/content/industry-data"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime", default: "" }
+      - label: "標籤"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        required: false
+        options: ["實價登錄", "中科", "中彰投", "交易分析", "設廠選址", "地主活化", "法規", "風險防範", "趨勢判讀", "供應鏈"]
+      - { label: "摘要（80-120 字）", name: "excerpt", widget: "text" }
+      - { label: "封面圖（可選）", name: "coverImage", widget: "image", required: false }
+      - { label: "作者", name: "author", widget: "string", default: "張現傑" }
+      - { label: "來源註記（若為搬遷文章）", name: "sourceNote", widget: "string", required: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  - name: "market-view"
+    label: "市場觀察"
+    folder: "src/content/market-view"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime", default: "" }
+      - label: "標籤"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        required: false
+        options: ["實價登錄", "中科", "中彰投", "交易分析", "設廠選址", "地主活化", "法規", "風險防範", "趨勢判讀", "供應鏈"]
+      - { label: "摘要", name: "excerpt", widget: "text" }
+      - { label: "封面圖（可選）", name: "coverImage", widget: "image", required: false }
+      - { label: "作者", name: "author", widget: "string", default: "張現傑" }
+      - { label: "來源註記（若為搬遷文章）", name: "sourceNote", widget: "string", required: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "內文", name: "body", widget: "markdown" }
+
+  - name: "insights"
+    label: "其他資訊"
+    folder: "src/content/insights"
+    create: true
+    slug: "{{year}}-{{month}}-{{slug}}"
+    extension: "md"
+    format: "frontmatter"
+    fields:
+      - { label: "標題", name: "title", widget: "string" }
+      - { label: "發布日期", name: "date", widget: "datetime", default: "" }
+      - label: "標籤"
+        name: "tags"
+        widget: "select"
+        multiple: true
+        required: false
+        options: ["實價登錄", "中科", "中彰投", "交易分析", "設廠選址", "地主活化", "法規", "風險防範", "趨勢判讀", "供應鏈"]
+      - { label: "摘要", name: "excerpt", widget: "text" }
+      - { label: "封面圖（可選）", name: "coverImage", widget: "image", required: false }
+      - { label: "作者", name: "author", widget: "string", default: "張現傑" }
+      - { label: "來源註記", name: "sourceNote", widget: "string", required: false }
+      - { label: "草稿", name: "draft", widget: "boolean", default: false }
+      - { label: "內文", name: "body", widget: "markdown" }

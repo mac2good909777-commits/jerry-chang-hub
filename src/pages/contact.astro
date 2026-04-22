@@ -1,0 +1,39 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../consts';
+---
+<Base title={`聯繫｜${SITE.author}`} description="張現傑 — LINE、電話、Email 聯繫方式與 vCard 下載。">
+  <section class="cat-hero">
+    <div class="container">
+      <div class="cat-hero__eyebrow" style="color: var(--c-blue);">CONTACT</div>
+      <h1 class="cat-hero__title">聯繫我</h1>
+      <p class="cat-hero__sub">若您或身邊朋友有工業不動產相關需求，歡迎直接聯繫</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <h2 class="mb-16">聯繫方式</h2>
+          <p class="muted mb-24">{SITE.workHours}。LINE 為主要聯繫方式，看到訊息會在上班時段內回覆。</p>
+          <div class="contact-buttons">
+            <a class="btn btn--primary btn--lg" href={SITE.contact.line}>LINE 聯繫（主要）</a>
+            <a class="btn btn--ghost btn--lg" href={`tel:${SITE.contact.phone}`}>撥打電話 {SITE.contact.phone}</a>
+            <a class="btn btn--ghost btn--lg" href={`mailto:${SITE.contact.email}`}>Email：{SITE.contact.email}</a>
+            <a class="btn btn--gold btn--lg" href="/images/chang.vcf" download>下載名片（vCard）一鍵存入通訊錄</a>
+            <a class="btn btn--ghost" href={SITE.contact.fbPage}>Facebook 粉絲頁「工業地產筆記」</a>
+          </div>
+          <p class="muted mt-32" style="font-size:13px;">
+            主要受理工業不動產相關諮詢 — 物件買賣、設廠選址、資產活化、交易風險初判。若為住商、租屋或其他類型不動產，可協助轉介合適的朋友。
+          </p>
+        </div>
+        <div class="qr-box">
+          <div class="qr-box__placeholder">LINE QR Code<br/>（/public/images/line-qr.png）</div>
+          <div style="font-weight:700;color:var(--c-ink);margin-bottom:4px;">{SITE.author}</div>
+          <div class="muted" style="font-size:13px;">工業不動產・設廠評估整合服務</div>
+        </div>
+      </div>
+    </div>
+  </section>
+</Base>

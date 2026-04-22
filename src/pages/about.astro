@@ -1,0 +1,74 @@
+---
+import Base from '../layouts/Base.astro';
+import PartnerNote from '../components/PartnerNote.astro';
+import { SITE } from '../consts';
+---
+<Base title={`關於我｜${SITE.author}`} description="張現傑 — 工業不動產市場判讀、設廠選址、廠房風險初判。個人專業歷程與服務範圍說明。">
+  <section class="cat-hero">
+    <div class="container">
+      <div class="cat-hero__eyebrow" style="color: var(--c-blue);">ABOUT</div>
+      <h1 class="cat-hero__title">關於我</h1>
+      <p class="cat-hero__sub">工業不動產．設廠評估整合服務</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container-read">
+      <h2>一句話說完我在做什麼</h2>
+      <p>我是張現傑，長期服務於工業不動產領域。過去以物件媒合為主，現階段整合協作資源後，可協助的範圍從「找廠找地」延伸到設廠選址比較、閒置資產活化、土地開發前期評估等較完整的前中段判斷工作。</p>
+
+      <h2>主要服務內容</h2>
+      <p><strong>1. 工業不動產市場判讀與交易評估</strong> — 特定工業區的實價登錄彙整、交易結構變化解讀、價格區間與買方結構判讀。面向「想先把資訊搞清楚再做決定」的買賣雙方。</p>
+      <p><strong>2. 企業設廠選址與資產活化協助</strong> — 給企業方的選址比較（區位、廠區條件、法規、鄰地風險）；給地主方的閒置廠房或土地活化評估（自建、招租、出售、合作開發的利弊比較）。</p>
+      <p><strong>3. 工業廠房／工業地交易風險初判</strong> — 建物合法性、地目與使用分區、道路與鄰地關係、既有租約、稅務與融資條件的初步檢核。這一段通常是買賣雙方最容易忽略、但事後最貴的地方。</p>
+
+      <h2>服務對象與常見需求情境</h2>
+      <ul>
+        <li>中小製造業需要自置廠房或擴廠，想先比較 2–3 個候選區位的實際成本與風險。</li>
+        <li>地主持有工業地或老舊廠房，想評估自建、招租、出售三條路徑哪一條比較適合。</li>
+        <li>投資方對特定工業區有興趣，需要一份冷靜的市場判讀作為進場前的基礎。</li>
+        <li>交易案接近成交階段，需要獨立的第三方把關交易條件與潛在風險。</li>
+        <li>跨縣市比較：例如台中 vs 彰化、北科 vs 中科周邊，想聽聽實際差異。</li>
+      </ul>
+
+      <h2>專業資歷</h2>
+      <div class="timeline">
+        <div class="timeline__item">
+          <div class="timeline__period">早期</div>
+          <div class="timeline__title">信義房屋 — 住商不動產基礎訓練</div>
+          <p>建立不動產交易基本功、服務流程與客戶溝通訓練。</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__period">進階</div>
+          <div class="timeline__title">磐石地政士 — 地政專業養成</div>
+          <p>深入地政、過戶、稅務實務，對「交易為什麼會卡住」有了第一線的理解。</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__period">深耕</div>
+          <div class="timeline__title">睦聚工業地產 — 工業不動產專業專注期</div>
+          <p>長期聚焦工業不動產，累積特定工業區的實際成交、買方結構、廠房條件判讀經驗。物件相關業務仍由該站承擔。</p>
+        </div>
+        <div class="timeline__item">
+          <div class="timeline__period">現階段</div>
+          <div class="timeline__title">整合協作期</div>
+          <p>與瑞禾開發進行專案式合作，使過去以「單點媒合」為主的服務，能延伸到設廠選址比較、資產活化評估、土地開發前期判斷等前中段工作。本站作為個人觀點、分析與文章的長期發布地。</p>
+        </div>
+      </div>
+
+      <h2>可整合的合作資源</h2>
+      <PartnerNote variant="long" />
+
+      <h2>聯繫方式</h2>
+      <p>最快的聯繫方式是 LINE（{SITE.workHours}）。若需電話討論可約好時間撥打。</p>
+      <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;">
+        <a class="btn btn--primary" href={SITE.contact.line}>LINE 聯繫</a>
+        <a class="btn btn--ghost" href={`tel:${SITE.contact.phone}`}>撥打電話</a>
+        <a class="btn btn--ghost" href="/contact/">更多聯繫方式</a>
+      </div>
+
+      <div class="mt-48 center">
+        <a class="btn btn--ghost" href="/market-view/">看看我最近寫的文章 →</a>
+      </div>
+    </div>
+  </section>
+</Base>

@@ -1,0 +1,28 @@
+---
+import Article from '../../layouts/Article.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const entries = await getCollection('industry-data', ({ data }) => !data.draft);
+  return entries.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props as { entry: any };
+const { Content } = await entry.render();
+const d = entry.data;
+---
+<Article
+  title={d.title}
+  date={d.date}
+  tags={d.tags}
+  category="industry-data"
+  excerpt={d.excerpt}
+  coverImage={d.coverImage}
+  sourceNote={d.sourceNote}
+  slug={entry.slug}
+>
+  <Content />
+</Article>

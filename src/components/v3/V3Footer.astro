@@ -1,0 +1,51 @@
+---
+import VersionSwitch from '../VersionSwitch.astro';
+const year = new Date().getFullYear();
+const buildDate = new Date().toISOString().slice(0, 10);
+const PHONE = '0953-909-777';
+const LINE_ID = '0953909777';
+const FB_URL = 'https://www.facebook.com/industrial.realestate.notes';
+---
+<footer class="v2-footer">
+  <div class="v2-wrap">
+    <div class="v2-footer__grid">
+      <div>
+        <div class="v2-footer__brand-name">張現傑 × 睦聚地產</div>
+        <div class="v2-footer__brand-desc">
+          工業不動產市場觀察・產業資訊分析・長期內容累積平台。目前實際仲介服務與交易承接，與瑞禾開發合作辦理。
+        </div>
+      </div>
+      <div class="v2-footer__col">
+        <div class="v2-footer__col-title">內容分類</div>
+        <ul>
+          <li><a href="/v3/industry-data/">產業資訊</a></li>
+          <li><a href="/v3/market-view/">市場觀察</a></li>
+          <li><a href="/v3/insights/">其他資訊</a></li>
+        </ul>
+      </div>
+      <div class="v2-footer__col">
+        <div class="v2-footer__col-title">關於</div>
+        <ul>
+          <li><a href="/v3/about/">關於我＆睦聚地產</a></li>
+          <li><a href="/v3/about/#focus">本站聚焦內容</a></li>
+          <li><a href="/v3/about/#timeline">專業歷程</a></li>
+          <li><a href="/v3/about/#partnership">合作說明</a></li>
+        </ul>
+      </div>
+      <div class="v2-footer__col">
+        <div class="v2-footer__col-title">聯繫</div>
+        <ul>
+          <li><a href={`tel:${PHONE.replace(/-/g,'')}`}>電話 {PHONE}</a></li>
+          <li><a href={`https://line.me/ti/p/~${LINE_ID}`}>LINE {LINE_ID}</a></li>
+          <li><a href={FB_URL}>Facebook｜工業地產筆記</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="v2-footer__bottom">
+      <div>© {year} 張現傑 × 睦聚地產．工業不動產市場觀察／產業資訊分析／長期內容累積平台</div>
+      <div>實際仲介服務與交易承接，目前與瑞禾開發合作辦理 · 最後更新 {buildDate}</div>
+    </div>
+  </div>
+</footer>
+
+<VersionSwitch current="v3" />

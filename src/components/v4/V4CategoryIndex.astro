@@ -1,0 +1,46 @@
+---
+import V4Base from '../../layouts/V4Base.astro';
+import V4Insight from './V4Insight.astro';
+import { CATEGORIES, type CategoryKey } from '../../consts';
+import { getCollection } from 'astro:content';
+
+interface Props { category: CategoryKey; }
+const { category } = Astro.props;
+const cat = CATEGORIES[category];
+
+const entries = await getCollection(category as any, ({ data }: any) => !data.draft);
+entries.sort((a: any, b: any) => b.data.date.valueOf() - a.data.date.valueOf());
+---
+<V4Base title={`${cat.name}｜張現傑 × 睦聚地產`} description={cat.subtitle}>
+  <section class="v2-cat-hero">
+    <div class="v2-wrap v2-cat-hero__inner">
+      <div class="v2-cat-hero__kicker">{category.toUpperCase().replace('-', ' ')}</div>
+      <h1 class="v2-cat-hero__title">{cat.name}</h1>
+      <p class="v2-cat-hero__desc">{cat.subtitle}</p>
+      <p class="v2-cat-hero__desc" style="margin-top:20px;color:var(--v2-text-soft);">
+        {cat.description}
+      </p>
+    </div>
+  </section>
+
+  <section class="v2-section">
+    <div class="v2-wrap">
+      {entries.length === 0 ? (
+        <p style="text-align:center;color:var(--v2-text-soft);">此分類內容持續累積中。</p>
+      ) : (
+        <div class="v2-insights">
+          {entries.map((e: any) => (
+            <V4Insight
+              href={`/v4/${category}/${e.slug}/`}
+              title={e.data.title}
+              excerpt={e.data.excerpt}
+              date={e.data.date}
+              category={category}
+              coverImage={e.data.coverImage}
+            />
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+</V4Base>
