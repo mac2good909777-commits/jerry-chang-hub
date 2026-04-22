@@ -12,7 +12,7 @@ const V4_NAV = [
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const isCurrent = (href: string) => {
   const h = href.replace(/\/$/, '') || '/';
-  if (h === '/v4') return pathname === '/v4';
+  if (h === '/') return pathname === '/';
   return pathname === h || pathname.startsWith(h + '/');
 };
 ---

@@ -31,7 +31,7 @@ entries.sort((a: any, b: any) => b.data.date.valueOf() - a.data.date.valueOf());
         <div class="v2-insights">
           {entries.map((e: any) => (
             <V4Insight
-              href={`/v4/${category}/${e.slug}/`}
+              href={`/${category}/${e.slug}/`}
               title={e.data.title}
               excerpt={e.data.excerpt}
               date={e.data.date}
